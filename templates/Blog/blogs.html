@@ -5,10 +5,11 @@
 {% block body %}
 
 <div class="container-fluid pt-5" style="min-height: 100vh;">
+    {% if allBlogPosts %}
     <h1 class="text-center mt-5 p-3">All Blog Posts</h1>
     <div class="container-fluid d-flex flex-column justify-content-around align-items-center flex-wrap my-5">
         {% for posts in allBlogPosts %}
-            <div class="card blog-card-home card-shadow position-relative card-hover my-3 mx-3" style="width: 70%; height: 10%; border-radius: 10px;">
+        <div class="card blog-card-home card-shadow position-relative card-hover my-3 mx-3" style="width: 70%; height: 10%; border-radius: 10px;">
                 <div class="card-body px-3">
                     <h5 class="card-title fs-2 fw-semi-bold p-1" style="pointer-events: none;">{{posts.title}}</h5>
                     <p class="card-text" style="pointer-events: none;">{{posts.content |safe |truncatechars:600}}</p>
@@ -17,7 +18,11 @@
                     </div>
                 </div>
             </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <h1 class="text-center mt-5 p-3">No Blog Posts Yet!</h1>
+            <h1 class="text-center mt-5 p-3 fs-5">Coming Soon ...</h1>
+        {% endif %}
 </div>
 {% endblock body %}

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}{{current_playlist_name}}{% endblock title %}
 {% block body %}
 <div class="container-fluid pt-5 m-0" style="min-height: 100vh;">
     <div class="container-fluid pt-5 m-0">
@@ -8,7 +9,7 @@
                 <iframe src="{{video_details.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="yt-video" allowfullscreen></iframe>
             </div>
             <div class="col-4 border p-3 ms-2 playlist">
-                <h1 class="text-center fs-4 fw-bold">React Js Tutorials For Beginners</h1>
+                <h1 class="text-center fs-4 fw-bold">{{current_playlist_name}}</h1>
                 <div class="box py-3" style="overflow-y: scroll; overflow-x: hidden; height: 70vh; background: #f1f1f1;">
                     {% for v in vid %}
                         <a href="/courses/{{playlist_slug}}/{{v.slug}}/" class="video_list_card m-3 d-flex fw-semi-bold text-decoration-none video-card-shadow rounded-3 overflow-hidden card-hover justify-content-center align-items-center">
@@ -25,11 +26,11 @@
             <button class="btn q-btn border-bottom">Doubts and Soulutions</button>
         </div>
         <hr class="m-0 p-0 mb-3">
-        <div class="container-box" style="min-height: 50vh;">
+        <div class="container-box container" style="min-height: 50vh;">
             <div class="text overview px-3">
                 <p>{{video_details.overview|safe}}</p>
             </div>
-            <div class="q-a px-3" style="display: none;">
+            <div class="q-a px-3 container" style="display: none;">
                 <p>
                     To be done !
                 </p>
@@ -37,4 +38,22 @@
         </div>
     </div>
 </div>
+    <script>
+        const overview = document.querySelector('.overview');
+        const qA = document.querySelector('.q-a');
+        const oBtn = document.querySelector('.o-btn');
+        const qBtn = document.querySelector('.q-btn');
+        oBtn.addEventListener('click', ()=>{
+            qA.style.display = "none";
+            overview.style.display = "block";
+            oBtn.classList.add("btn-videos");
+            qBtn.classList.remove("btn-videos");
+        });
+        qBtn.addEventListener('click', ()=>{
+            qA.style.display = "block";
+            overview.style.display = "none";
+            oBtn.classList.remove("btn-videos");
+            qBtn.classList.add("btn-videos");
+        });
+    </script>
 {% endblock body %}

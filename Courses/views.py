@@ -5,9 +5,14 @@ from Courses.models import Playlist, Video
 
 def courses(request):
     allCourses = Playlist.objects.all()
-    fisrt_video = allCourses.first()
-    slugOfFirstVideo = fisrt_video.videos.all().first().slug
-    
+    if allCourses.exists():
+        for playlist in allCourses:
+            first_video = playlist.videos.all().first()
+            slugOfFirstVideo = first_video.slug
+    else:
+        slugOfFirstVideo = ""
+
+
     context = {
         'allCourses':allCourses,
         'slugOfFirstVideo': slugOfFirstVideo,
@@ -21,10 +26,12 @@ def video(request, slug1, slug2):
     for video_s in playlist:
         vid = video_s.videos.all()
     playlist_slug = slug1
+    current_playlist_name = playlist.first().playlist_name 
     context = {
         'video_details': video_details,
         'vid':vid,
         'playlist_slug': playlist_slug,
+        'current_playlist_name':current_playlist_name,
     }
     return render(request, "Courses/video.html", context)
 
