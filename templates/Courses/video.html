@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="container-fluid pt-5 m-0" style="min-height: 100vh;">
+    <div class="container-fluid pt-5 m-0">
+        <div class="d-flex flex-wrap video-container">
+            <div class="col">
+                <iframe src="{{video_details.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="yt-video" allowfullscreen></iframe>
+            </div>
+            <div class="col-4 border p-3 ms-2 playlist">
+                <h1 class="text-center fs-4 fw-bold">React Js Tutorials For Beginners</h1>
+                <div class="box py-3" style="overflow-y: scroll; overflow-x: hidden; height: 70vh; background: #f1f1f1;">
+                    {% for v in vid %}
+                        <a href="/courses/{{playlist_slug}}/{{v.slug}}/" class="video_list_card m-3 d-flex fw-semi-bold text-decoration-none video-card-shadow rounded-3 overflow-hidden card-hover justify-content-center align-items-center">
+                            <h2 class="p-3 m-3 video_names" style="font-size: 20px; color: #000;">{{v.video_name}}</h2>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid p-0 m-0 px-3 mt-3">
+        <div class="container-fluid p-0">
+            <button class="btn o-btn border-bottom btn-videos">Overview</button>
+            <button class="btn q-btn border-bottom">Doubts and Soulutions</button>
+        </div>
+        <hr class="m-0 p-0 mb-3">
+        <div class="container-box" style="min-height: 50vh;">
+            <div class="text overview px-3">
+                <p>{{video_details.overview|safe}}</p>
+            </div>
+            <div class="q-a px-3" style="display: none;">
+                <p>
+                    To be done !
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

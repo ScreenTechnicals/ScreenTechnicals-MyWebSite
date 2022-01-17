@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block body %}
+<div class="container-fluid d-flex justify-content-center align-items-center m-0 p-0" style="min-height: 100vh;">
+    <form action="/login/" method="POST" class="Auth_form_box d-flex justify-content-center align-items-center">
+        {% csrf_token %}
+        <div class="auth_image overflow-hidden col"></div>
+        <div class="mb-3 col d-flex flex-column align-items-center position-relative px-4">
+            <h1 class="fw-semi-bold fs-4 text-center">Welcome Back Devs!</h1>
+            <h3 class="-" style="color:gray; font-size: 18px;">Please Login Here</h3>
+            <div class="py-2 form_fields">
+                <label for="useremail" class="form-label fw-semi-bold">Email address</label>
+                <input type="email" class="form-control" id="useremail" name="useremail" placeholder="Please Enter Your Registered Email Address Here" required>
+            </div>
+            <div class="py-2 form_fields">
+                <label for="userpassword" class="form-label fw-semi-bold">Passsword</label>
+                <input type="password" class="form-control" id="userpassword" name="userpassword" placeholder="Please Enter Your Password Here" required>
+            </div>
+            <div class="py-2 form_fields">
+                <button class="btn d-block btn-primary hover-bg-secondary btn-auth" type="submit">Login</button>
+            </div>
+            <div class="py-2 form_fields">
+                <p class="text-uppercase text-center" style="font-size: 15px;">Don't have an account! <a href="/signup/" class="text-primary">create one</a></p>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock body %}

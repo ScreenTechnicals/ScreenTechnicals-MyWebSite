@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}All Free Courses{% endblock title %}
+{% block activeCourses %}text-primary{% endblock activeCourses %}
+{% block body %}
+<div class="container-fluid pt-5" style="min-height: 100vh;">
+    <h1 class="text-center mt-5 p-3 fw-semi-bold">All Courses</h1>
+    <div class="container-fluid py-5 d-flex flex-wrap justify-content-center align-items-center">
+        {% for course in allCourses %}
+            <div class="card card-shadow position-relative card-hover my-4 mx-5" style="width: 23rem; height: 32rem; border-radius: 10px;" style="width: 18rem;">
+                <img src="/media/{{course.thumbnail}}/" class="card-img-top" style="width:100%; height:250px;" alt="Image is loading...">
+                <div class="card-body px-3">
+                    <p class="card-text px-2">Free</p>
+                    <h5 class="card-title fs-5 fw-semi-bold p-1">{{course.playlist_name}}</h5>
+                    <p class="card-text p-1">{{course.desc|truncatechars:150}}</p>
+                    <a href="/courses/{{course.slug}}/{{slugOfFirstVideo}}/" class="btn btn-secondary rounded-pill">Go somewhere</a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock body %}

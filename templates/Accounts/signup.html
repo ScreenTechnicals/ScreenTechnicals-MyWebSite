@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Sign Up{% endblock title %}
+{% block body %}
+<div class="container-fluid d-flex justify-content-center align-items-center m-0 p-0" style="min-height: 100vh;">
+    <form action="/signup/" method="POST" class="Auth_form_box d-flex justify-content-center align-items-center">
+        {% csrf_token %}
+        <div class="auth_image overflow-hidden col"></div>
+        <div class="mb-3 col d-flex flex-column align-items-center position-relative px-4">
+            <h1 class="fw-semi-bold fs-4 text-center">Hey Devs! Create An Account Here</h1>
+            <h3 class="-" style="color:gray; font-size: 18px;">Please Sign Up Here</h3>
+            <div class="py-2 form_fields">
+                <label for="user_name" class="form-label fw-semi-bold">Username</label>
+                <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Create A Uinque Username Here" required>
+            </div>
+            <div class="py-2 form_fields">
+                <label for="user_email" class="form-label fw-semi-bold">Email address</label>
+                <input type="email" class="form-control" id="user_email" name="user_email" placeholder="Please Enter Your Email Address Here" required>
+            </div>
+            <div class="py-2 form_fields">
+                <label for="user_password1" class="form-label fw-semi-bold"> Create Passsword</label>
+                <input type="password" class="form-control" id="user_password1" name="user_password1" placeholder="Please Enter Your Password Here" required>
+            </div>
+            <div class="py-2 form_fields">
+                <label for="user_password2" class="form-label fw-semi-bold"> Confirm Passsword</label>
+                <input type="password" class="form-control" id="user_password2" name="user_password2" placeholder="Please Re-Enter Your Password Here" required>
+            </div>
+            <div class="py-2 form_fields">
+                <button class="btn d-block btn-primary hover-bg-secondary btn-auth" type="submit">Sign Up</button>
+            </div>
+            <div class="py-2 form_fields">
+                <p class="text-uppercase text-center" style="font-size: 15px;">Already have an account! <a href="/login/" class="text-primary">Login Here</a></p>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock body %}

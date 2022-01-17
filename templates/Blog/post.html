@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}{{post_details.category}}{% endblock title %}
+{% block body %}
+<div class="container pt-5 px-4" style="min-height: 100vh;">
+    <h1 class="text-secondary pt-5 fw-bold">{{post_details.title}}</h1>
+    <p style="color: gray;">Published on {{post_details.date_time}}</p>
+    <h5 class="blog_text">{{post_details.content |safe}}</h5>
+</div>
+{% endblock body %}

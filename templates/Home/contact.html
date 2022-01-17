@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact{% endblock title %}
+{% block activeContact %}text-primary{% endblock activeContact %}
+{% block body %}
+<div class="container-fluid d-flex justify-content-center align-items-center m-0 p-0" style="min-height: 100vh;">
+    <form action="/contact/" method="POST" class="Contact_form_box d-flex justify-content-center align-items-center">
+        {% csrf_token %}
+        <div class="auth_image overflow-hidden col"></div>
+        <div class="mb-3 col d-flex flex-column align-items-center position-relative px-4">
+            <h1 class="fw-semi-bold fs-4 text-center">Feel Free to Ask !</h1>
+            <h3 class="-" style="color:gray; font-size: 18px;">Never be shy to ask</h3>
+            <div class="py-2 form_fields">
+                <label for="full_name" class="form-label fw-semi-bold">Full Name</label>
+                <input type="full_name" class="form-control" id="full_name" name="full_name" placeholder="Please Enter Your Full Name Here" required>
+            </div>
+            <div class="py-2 form_fields">
+                <label for="email" class="form-label fw-semi-bold">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Please Enter Your Registered Email Address Here" required>
+            </div>
+            <div class="py-2 form_fields">
+                <label for="message" class="form-label fw-semi-bold">Message</label>
+                <textarea type="message" class="form-control" id="message" name="message" style="height: 150px;" placeholder="Please Enter Your Questions or suggestions Here" required></textarea>
+            </div>
+            <div class="py-2 form_fields">
+                <button class="btn d-block btn-primary hover-bg-secondary btn-auth" type="submit">Send</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock body %}
