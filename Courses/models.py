@@ -1,6 +1,9 @@
 from email.policy import default
+from operator import imod
 from django.db import models
 from autoslug import AutoSlugField
+from Accounts.models import Account
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -28,3 +31,26 @@ class Playlist(models.Model):
     def __str__(self):
         return self.playlist_name
     
+
+class Comment(models.Model):
+    sno = models.AutoField(primary_key=True)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    text = models.TextField()
+    date_time = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.user.username
+
+class Reply(models.Model):
+    sno = models.AutoField(primary_key=True)
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    text = models.TextField()
+    date_time = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.user.username
+    
+

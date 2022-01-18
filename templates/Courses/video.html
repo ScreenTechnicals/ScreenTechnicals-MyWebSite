@@ -23,7 +23,7 @@
     <div class="container-fluid p-0 m-0 px-3 mt-3">
         <div class="container-fluid p-0">
             <button class="btn o-btn border-bottom btn-videos">Overview</button>
-            <button class="btn q-btn border-bottom">Doubts and Soulutions</button>
+            <button class="btn q-btn border-bottom">Comments</button>
         </div>
         <hr class="m-0 p-0 mb-3">
         <div class="container-box container" style="min-height: 50vh;">
@@ -31,9 +31,37 @@
                 <p>{{video_details.overview|safe}}</p>
             </div>
             <div class="q-a px-3 container" style="display: none;">
-                <p>
-                    To be done !
-                </p>
+                <h2 class="fw-bold">Comments</h2>
+                {% if request.user.is_authenticated %}
+                    <form action="/courses/{{playlist_slug}}/{{video_details.slug}}/" method="POST" class="d-flex">
+                    {% csrf_token %}
+                        <input class="form-control rounded-0" type="text" id="comment_text" name="comment_text" placeholder="Plaese Give Your Views Here !">
+                        <button class="btn btn-primary rounded-0" type="submit"><i class="bi bi-arrow-right"></i></button>
+                    </form>
+                {% endif %}
+                {% if allComments %}
+                {% for comment in allComments %}
+                    <div class="mt-4 border form-control">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <div class="fs-1 px-2"><i class="bi bi-person-circle"></i></div>
+                            <p class="m-0 p-0 text-primary fw-semi-bold">{{comment.user.username}}<span class="ms-1" style="font-size:12px; color:gray;">{{comment.date_time}}</span></p>
+                        </div>
+                        <h6 class="mt-2">{{comment.text}}</h6>
+                        <div class="text-end"><i class="bi bi-reply-fill fs-4" id="reply-btn{{forloop.counter}}" style="cursor: pointer;" onClick="reply_click(this.id)"></i></div>
+                    </div>
+                    <div class="m-3 mx-5 replyBox reply-btn{{forloop.counter}}" style="width:96%; display:none;">
+                        {% if request.user.is_authenticated %}
+                            <form action="/courses/{{playlist_slug}}/{{video_details.slug}}/" method="POST" class="d-flex">
+                            {% csrf_token %}
+                                <input class="form-control rounded-0" type="text" id="reply_text" name="reply_text" placeholder="Plaese Give Your Views Here !">
+                                <button class="btn btn-primary rounded-0" type="submit"><i class="bi bi-arrow-right"></i></button>
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                {% else %}
+                    <h5 class="my-4">Be The First to Comment</h5>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -55,5 +83,20 @@
             oBtn.classList.remove("btn-videos");
             qBtn.classList.add("btn-videos");
         });
+        
+         function reply_click(clicked_id)
+        {
+            const boxReply = document.querySelectorAll(".replyBox");
+            boxReply.forEach(element => {
+                if (clicked_id == element.classList[3]){
+                    if (element.style.display == "none"){
+                        element.style.display = "block";
+                    }else{
+                        element.style.display = "none";
+                    }
+                }
+
+            });
+        }
     </script>
 {% endblock body %}
