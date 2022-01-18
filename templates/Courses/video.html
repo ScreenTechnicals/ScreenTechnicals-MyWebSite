@@ -30,8 +30,8 @@
             <div class="text overview px-3">
                 <p>{{video_details.overview|safe}}</p>
             </div>
-            <div class="q-a px-3 container" style="display: none;">
-                <h2 class="fw-bold">Comments</h2>
+            <div class="q-a px-3 container pb-5" style="display: none; min-height:70vh;">
+                <h2 class="fw-bold">Comments({{allComments|length}})</h2>
                 {% if request.user.is_authenticated %}
                     <form action="/courses/{{playlist_slug}}/{{video_details.slug}}/" method="POST" class="d-flex">
                     {% csrf_token %}
@@ -44,7 +44,7 @@
                     <div class="mt-4 border form-control">
                         <div class="d-flex justify-content-start align-items-center">
                             <div class="fs-1 px-2"><i class="bi bi-person-circle"></i></div>
-                            <p class="m-0 p-0 text-primary fw-semi-bold">{{comment.user.username}}<span class="ms-1" style="font-size:12px; color:gray;">{{comment.date_time}}</span></p>
+                            <p class="m-0 p-0 text-primary fw-semi-bold">{{comment.user.username}}<span class="username" style="display:none;">{{comment.user.id}}</span><span class="ms-1" style="font-size:12px; color:gray;">{{comment.date_time}}</span></p>
                         </div>
                         <h6 class="mt-2">{{comment.text}}</h6>
                         <div class="text-end"><i class="bi bi-reply-fill fs-4" id="reply-btn{{forloop.counter}}" style="cursor: pointer;" onClick="reply_click(this.id)"></i></div>
@@ -54,13 +54,29 @@
                             <form action="/courses/{{playlist_slug}}/{{video_details.slug}}/" method="POST" class="d-flex">
                             {% csrf_token %}
                                 <input class="form-control rounded-0" type="text" id="reply_text" name="reply_text" placeholder="Plaese Give Your Views Here !">
+                                <input class="form-control rounded-0" style="display: none;" type="text" id="replied_to" value="" name="replied_to">
                                 <button class="btn btn-primary rounded-0" type="submit"><i class="bi bi-arrow-right"></i></button>
                             </form>
+                            {% if allReplies %}
+                                {% for reply in allReplies %}
+                                    {% if comment.user|slugify == reply.replied_to|slugify %}
+                                    <div class="mt-4 border form-control">
+                                        <div class="d-flex justify-content-start align-items-center">
+                                            <div class="fs-1 px-2"><i class="bi bi-person-circle"></i></div>
+                                            <p class="m-0 p-0 text-primary fw-semi-bold">{{reply.user.username}}</p>
+                                        </div>
+                                        <h6 class="mt-2">{{reply.text}}</h6>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <h6 class="my-4">No Replies yet...</h6>
+                            {% endif %}
                         {% endif %}
                     </div>
                 {% endfor %}
                 {% else %}
-                    <h5 class="my-4">Be The First to Comment</h5>
+                    <h5 class="my-4">Be The First to Comment...</h5>
                 {% endif %}
             </div>
         </div>
@@ -87,10 +103,15 @@
          function reply_click(clicked_id)
         {
             const boxReply = document.querySelectorAll(".replyBox");
+            const username = document.querySelector(".username");
             boxReply.forEach(element => {
                 if (clicked_id == element.classList[3]){
                     if (element.style.display == "none"){
                         element.style.display = "block";
+                        const user = username.innerText;
+                        repliedTo = element.children[0].children[2]
+                        repliedTo.value = user
+                        console.log(repliedTo.value);
                     }else{
                         element.style.display = "none";
                     }

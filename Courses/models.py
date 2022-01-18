@@ -44,7 +44,7 @@ class Comment(models.Model):
 
 class Reply(models.Model):
     sno = models.AutoField(primary_key=True)
-    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+    replied_to = models.ForeignKey(Comment, on_delete=models.CASCADE)
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
     text = models.TextField()
