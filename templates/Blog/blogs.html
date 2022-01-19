@@ -12,8 +12,10 @@
         <div class="card blog-card-home card-shadow position-relative card-hover my-3 mx-3" style="width: 70%; height: 10%; border-radius: 10px;">
                 <div class="card-body px-3">
                     <h5 class="card-title fs-2 fw-semi-bold p-1" style="pointer-events: none;">{{posts.title}}</h5>
-                    <p class="card-text" style="pointer-events: none;">{{posts.content |safe |truncatechars:600}}</p>
+                    <p class="card-text" style="pointer-events: none;">{{posts.content |safe |truncatewords:200}}</p>
                     <div class="text-end d-block">
+                    </div>
+                    <div class="text-end mx-4 my-3">
                         <a href="/blogs/{{posts.slug}}/" class="btn text-end btn-secondary rounded-pill">Read Post</a>
                     </div>
                 </div>

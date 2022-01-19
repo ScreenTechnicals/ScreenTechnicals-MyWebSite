@@ -20,62 +20,65 @@
     <div class="container-fluid d-block text-center pt-5 mt-5 down-arrow"><a href="#down" class="w-100 fs-3 text-secondary"><i class="bi bi-caret-down-fill"></i></a></div>
 </div>
 <div class="container-fluid cards-box" id="down">
-    <h1 class="text-center">Our Recent Cources</h1>
+    <h1 class="text-center">Our Recent Courses</h1>
     <h5 class="text-center" style="color:gray">Learn . Practice . Create</h5>
     <div class="container-fluid d-flex justify-content-center align-items-start flex-wrap my-5">
-        <div class="card card-shadow position-relative card-hover my-3 mx-5" style="width: 23rem; height: 32rem; border-radius: 10px;">
-            <img src="https://images.unsplash.com/photo-1640622842223-e1e39f4bf627?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" class="card-img-top" alt="image"  style="border-top-left-radius: 10px; border-top-right-radius:10px;">
+        <div class="card card-shadow position-relative card-hover my-3 mx-5 card-resp" style="width: 23rem; height: 32rem; border-radius: 10px;">
+            <img src="/media/{{last.thumbnail}}/" class="card-img-top" alt="image"  style="border-top-left-radius: 10px; border-top-right-radius:10px; height:250px;">
             <div class="card-body px-3">
                 <p class="card-text px-2">Free</p>
-                <h5 class="card-title fs-2 fw-semi-bold p-1">Card title</h5>
-                <p class="card-text p-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-secondary rounded-pill">Watch Now</a>
+                <h5 class="card-title fs-4 fw-semi-bold p-1">{{last.playlist_name}}</h5>
+                <p class="card-text p-1">{{last.desc|truncatechars:60}}</p>
+                <a href="/courses/{{last.slug}}/{{last.videos.all.first.slug}}/" class="btn btn-secondary rounded-pill">Watch Now</a>
             </div>
         </div>
-        <div class="card card-shadow position-relative card-hover my-3 mx-5" style="width: 23rem; height: 32rem; border-radius: 10px;">
-            <img src="https://images.unsplash.com/photo-1640622842223-e1e39f4bf627?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" class="card-img-top" alt="image"  style="border-top-left-radius: 10px; border-top-right-radius:10px;">
+        <div class="card card-shadow position-relative card-hover my-3 mx-5 card-resp" style="width: 23rem; height: 32rem; border-radius: 10px;">
+            <img src="/media/{{sec_last.thumbnail}}/" class="card-img-top" alt="image"  style="border-top-left-radius: 10px; border-top-right-radius:10px; height:250px;">
             <div class="card-body px-3">
                 <p class="card-text px-2">Free</p>
-                <h5 class="card-title fs-2 fw-semi-bold p-1">Card title</h5>
-                <p class="card-text p-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-secondary rounded-pill">Watch Now</a>
+                <h5 class="card-title fs-4 fw-semi-bold p-1">{{sec_last.playlist_name}}</h5>
+                <p class="card-text p-1">{{sec_last.desc|truncatechars:60}}</p>
+                <a href="/courses/{{sec_last.slug}}/{{sec_last.videos.all.first.slug}}/" class="btn btn-secondary rounded-pill">Watch Now</a>
             </div>
         </div>
-        <div class="card card-shadow position-relative card-hover my-3 mx-5" style="width: 23rem; height: 32rem; border-radius: 10px;">
-            <img src="https://images.unsplash.com/photo-1640622842223-e1e39f4bf627?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" class="card-img-top" alt="image"  style="border-top-left-radius: 10px; border-top-right-radius:10px;">
+        <div class="card card-shadow position-relative card-hover my-3 mx-5 card-resp" style="width: 23rem; height: 32rem; border-radius: 10px;">
+            <img src="/media/{{th_last.thumbnail}}/" class="card-img-top" alt="image"  style="border-top-left-radius: 10px; border-top-right-radius:10px; height:250px;">
             <div class="card-body px-3">
                 <p class="card-text px-2">Free</p>
-                <h5 class="card-title fs-2 fw-semi-bold p-1">Card title</h5>
-                <p class="card-text p-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-secondary rounded-pill">Watch Now</a>
+                <h5 class="card-title fs-4 fw-semi-bold p-1">{{th_last.playlist_name}}</h5>
+                <p class="card-text p-1">{{th_last.desc|truncatechars:60}}</p>
+                <a href="/courses/{{th_last.slug}}/{{th_last.videos.all.first.slug}}/" class="btn btn-secondary rounded-pill">Watch Now</a>
             </div>
         </div>
+
     </div>
 </div>
 <div class="container-fluid cards-box">
     <h1 class="text-center">Recent Blog Posts</h1>
     <h5 class="text-center" style="color:gray">Read . Understand . Take Benifit</h5>
     <div class="container-fluid d-flex flex-column justify-content-around align-items-center flex-wrap my-5">
-        <div class="card blog-card-home card-shadow position-relative card-hover my-3 mx-3" style="width: 70%; height: 10%; border-radius: 10px;">
+        <div class="card blog-card-home card-shadow position-relative card-hover my-3 mx-3 b_caer-resp" style="width: 70%; height: 10%; border-radius: 10px;">
             <div class="card-body px-3">
-                <h5 class="card-title fs-2 fw-semi-bold p-1" style="pointer-events: none;">Card title</h5>
-                <p class="card-text p-1" style="pointer-events: none;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam, laboriosam iure corrupti placeat doloribus ea dolores consequuntur nam asperiores quae? Nihil laudantium fugiat dolore numquam. Perferendis doloremque tenetur quae explicabo consectetur dolorem quo exercitationem praesentium numquam vel molestias at, fugit corrupti iste totam, beatae culpa reprehenderit veritatis atque iusto a!</p>
-                <div class="text-end">
-                    <a href="#" class="btn btn-secondary rounded-pill">Read Post</a>
-                </div>
+                <h5 class="card-title fs-2 fw-semi-bold p-1" style="pointer-events: none;">{{b_last.title}}</h5>
+                <p class="card-text p-1" style="pointer-events: none;">{{b_last.content |safe |truncatewords:100}}</p>
+            </div>
+            <div class="text-end p-3">
+                <a href="/blogs/{{b_last.slug}}/" class="btn btn-secondary rounded-pill">Read Post</a>
             </div>
         </div>
-        <div class="card blog-card-home card-shadow position-relative card-hover my-3 mx-3" style="width: 70%; height: 10%; border-radius: 10px;">
+  
+        <div class="card blog-card-home card-shadow position-relative card-hover my-3 mx-3 b_caer-resp" style="width: 70%; height: 10%; border-radius: 10px;">
             <div class="card-body px-3">
-                <h5 class="card-title fs-2 fw-semi-bold p-1" style="pointer-events: none;">Card title</h5>
-                <p class="card-text p-1" style="pointer-events: none;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam, laboriosam iure corrupti placeat doloribus ea dolores consequuntur nam asperiores quae? Nihil laudantium fugiat dolore numquam. Perferendis doloremque tenetur quae explicabo consectetur dolorem quo exercitationem praesentium numquam vel molestias at, fugit corrupti iste totam, beatae culpa reprehenderit veritatis atque iusto a!</p>
-                <div class="text-end">
-                    <a href="#" class="btn btn-secondary rounded-pill">Read Post</a>
-                </div>
+                <h5 class="card-title fs-2 fw-semi-bold p-1" style="pointer-events: none;">{{b_sec_last.title}}</h5>
+                <p class="card-text p-1" style="pointer-events: none;">{{b_sec_last.content |safe |truncatewords:100}}</p>
+            </div>
+            <div class="text-end p-3">
+                <a href="/blogs/{{b_sec_last.slug}}/" class="btn btn-secondary rounded-pill">Read Post</a>
             </div>
         </div>
+
         <div>
-            <a href="#">See More</a>
+            <a href="/blogs/">See More</a>
         </div>
     </div>
 </div>
